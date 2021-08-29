@@ -1,24 +1,23 @@
-# setup-called-on-unmount
+# created-called-before-routechange (For bug reporting)
 
-## Project setup
+## Setup
 ```
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
 ```
 
-### Compiles and minifies for production
+## Reproduction
+1. Access to `/a`
+2. Click the link to access `/b`
+3. Console will print out
 ```
-yarn build
-```
+// first time access to /a
+layout a
+page a
 
-### Lints and fixes files
+// accessing to /b
+layout b
+page a
+page b
 ```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+↑ The created hook in page a is wrongly called when layout changes from `layout a` to `layout b`
